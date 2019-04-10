@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "141377720154",
+    "firebase_url": "https://flutter-intro-setup-eb2cf.firebaseio.com",
+    "project_id": "flutter-intro-setup-eb2cf",
+    "storage_bucket": "flutter-intro-setup-eb2cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141377720154:android:e04e8b2fb4a184b9",
+        "android_client_info": {
+          "package_name": "com.asherleelevy.firebase_setup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141377720154-rp1e17clj6lna3b01fgm843m1rnhndbm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.asherleelevy.firebase_setup",
+            "certificate_hash": "d11221494da36afd6cf4495f7862f713ed09bd29"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsXnBE2aRxiTQ3Ga8d2un8nU1eMmAtsuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141377720154-5s12vp4dl6bj47mjcl1nuk13jmu2tghr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
