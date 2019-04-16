@@ -1,6 +1,8 @@
 import 'package:firebase_setup/model/board.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -61,15 +63,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Board"),
+
+          title: Text("Board"), centerTitle: true,
         ),
         body: Column(
           children: <Widget>[
             Flexible(
               flex: 0,
-              child: Form(
-                key: formKey,
-                child: Flex(direction: Axis.vertical,
+              child: Center(
+                child: Form(
+                  key: formKey,
+                  child: Flex(
+                  direction: Axis.vertical,
                 children: <Widget>[
                   ListTile(
                     leading: Icon(Icons.subject),
@@ -98,8 +103,29 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             ),
-          ],
-        ));
+        ),
+
+            Flexible(
+              child: FirebaseAnimatedList(
+                  query: databaseReference,
+                  itemBuilder: (_, DataSnapshot snapshot, 
+                  Animation<double> animation, int index) {
+                return new Card(
+                child: ListTile (
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.red,
+                  ),
+                  title: Text(boardMessages[index].subject),
+                  subtitle: Text(boardMessages[index].body),
+                 
+                ),
+                );
+            }
+            )
+            )]
+    ),
+
+        );
   }
 
   void _onEntryAdded(Event event) {
