@@ -1,7 +1,11 @@
+import 'package:firebase_setup/model/board.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-final FirebaseDatabase database = FirebaseDatabase.instance;
+
+
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -14,23 +18,37 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Community Board'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-
-  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+
+
+  List<Board> boardMessages = List();
+  Board board;
+  final FirebaseDatabase database = FirebaseDatabase.instance;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  DatabaseReference databaseReference;
+
+
+  @override
+  void initState() {
+    super.initState();
+
+    board = Board("", "");
+    databaseReference = database.reference().child("community_board");
+    databaseReference.onChildAdded.listen(_onEntryAdded);
+
+  }
+
 
 //  void _incrementCounter() {
 //
@@ -55,18 +73,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(widget.title),
+        title: Text("Board"),
       ),
       body: Center(
 
         child: Column(
 
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-          ],
+          children: <Widget>[],
         ),
       ),
 
     );
+  }
+
+  void _onEntryAdded(Event event) {
+    setState(() {
+      boardMessages.add(Board.fromSnapshot(event.snapshot));
+    });
   }
 }
